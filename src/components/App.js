@@ -35,37 +35,38 @@ function App() {
     setselectedCard(card);
   }
   return (
-    <div className="page">
-      <Header />
+    <div className="root">
+      <div className="page">
+        <Header />
 
-      <Main
-        onCardClick={handleCardClick}
-        onEditProfile={handleEditProfileClick}
-        onAddPlace={handleAddPlaceClick}
-        onEditAvatar={handleEditAvatarClick} />
+        <Main
+          onCardClick={handleCardClick}
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onEditAvatar={handleEditAvatarClick} />
 
-      <Footer />
+        <Footer />
 
-      <EditAvatarPopup
-        onClose={closeAllPopups}
-        isOpen={isEditAvatarPopupOpen} />
+        <EditAvatarPopup
+          onClose={closeAllPopups}
+          isOpen={isEditAvatarPopupOpen} />
 
-      <EditProfilePopup
-        onClose={closeAllPopups}
-        isOpen={isEditProfilePopupOpen} />
+        <EditProfilePopup
+          onClose={closeAllPopups}
+          isOpen={isEditProfilePopupOpen} />
 
-      <ImagePopup
-        card={selectedCard}
-        onClose={closeAllPopups} />
+        <ImagePopup
+          card={selectedCard}
+          onClose={closeAllPopups} />
 
-      <PopupWithConfirmation />
+        <PopupWithConfirmation />
 
-      <AddCardPopup
-        onClose={closeAllPopups}
-        isOpen={isAddPlacePopupOpen} />
+        <AddCardPopup
+          onClose={closeAllPopups}
+          isOpen={isAddPlacePopupOpen} />
 
+      </div>
     </div>
-
   );
 }
 
