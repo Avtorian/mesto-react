@@ -1,7 +1,29 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-export default function AddCardPopup(props) {
+export default function AddPlacePopup(props) {
+  const [title, setTitle] = React.useState("");
+  const [link, setLink] = React.useState("");
+
+  React.useEffect(() =>{
+    setTitle('');
+    setLink('');
+  },[props.isOpen]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onAddPlace({
+      mestoLink: link,
+      mestoTitle: title
+    })
+  }
+
+  function handleChangeTitle(e) {
+    setTitle(e.target.value);
+  }
+  function handleChangeLink(e) {
+    setLink(e.target.value);
+  }
   return (
     <PopupWithForm
       name="cardPopup"
@@ -9,6 +31,7 @@ export default function AddCardPopup(props) {
       textButton="Создать"
       isOpen={props.isOpen}
       onClose={props.onClose}
+      onSubmit={handleSubmit}
     >
       <input
         id="mestoTitle-input"
@@ -19,6 +42,7 @@ export default function AddCardPopup(props) {
         minLength={2}
         maxLength={30}
         required=""
+        onChange={handleChangeTitle}
       />
       <span className="popup__input-error mestoTitle-input-error">
         Вы пропустили это поле.
@@ -30,6 +54,7 @@ export default function AddCardPopup(props) {
         placeholder="Ссылка на картинку"
         className="popup__input-text popup__input-text_type_link"
         required=""
+        onChange={handleChangeLink}
       />
       <span className="popup__input-error mestoLink-input-error">
         Вы пропустили это поле.
