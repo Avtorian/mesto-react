@@ -55,36 +55,41 @@ function App() {
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
-    }).catch((err) => console.log(`Ошибка ${err}`));;
+    })
+    .catch((err) => console.log(`Ошибка ${err}`));;
   }
   function handleCardDelete(card) {
     api.removeCard(card._id).then(() => {
       setCards((state) => state.filter((c) => c._id !== card._id))
-    }).catch((err) => console.log(`Ошибка ${err}`));;
+    })
+    .catch((err) => console.log(`Ошибка ${err}`));;
   }
   function handleUpdateUser(UserInfo) {
     api.editProfile(UserInfo)
       .then(newInfo => {
         setCurrentUser(newInfo);
+        closeAllPopups();
       })
       .catch((err) => console.log(`Ошибка ${err}`));
-    closeAllPopups();
+
   }
   function handleUpdateAvatar(link) {
     api.editProfileAvatar(link)
       .then(newAvatar => {
         setCurrentUser(newAvatar);
+        closeAllPopups();
       })
       .catch((err) => console.log(`Ошибка ${err}`));
-    closeAllPopups();
+
   }
   function handleAddPlaceSubmit(card) {
     api.addNewCard(card)
       .then((newCard) => {
         setCards([newCard, ...cards]);
+        closeAllPopups();
       })
       .catch((err) => console.log(`Ошибка ${err}`));
-    closeAllPopups();
+
   }
   return (
     <CurrentUserContext.Provider value={currentUser}>

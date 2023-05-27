@@ -43,6 +43,7 @@ export default function AddPlacePopup(props) {
         maxLength={30}
         required=""
         onChange={handleChangeTitle}
+        value={title}
       />
       <span className="popup__input-error mestoTitle-input-error">
         Вы пропустили это поле.
@@ -55,6 +56,7 @@ export default function AddPlacePopup(props) {
         className="popup__input-text popup__input-text_type_link"
         required=""
         onChange={handleChangeLink}
+        value={link}
       />
       <span className="popup__input-error mestoLink-input-error">
         Вы пропустили это поле.
